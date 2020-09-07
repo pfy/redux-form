@@ -294,7 +294,7 @@ function createReducer<M, L>(structure: Structure<M, L>) {
       const previousInitialValues = getIn(state, 'initial')
 
       let newInitialValues = mapData
-      var newValues = newInitialValues
+      let newValues = newInitialValues
 
       if (keepDirty) {
         if (!deepEqual(newInitialValues, previousInitialValues)) {
