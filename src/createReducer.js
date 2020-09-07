@@ -302,7 +302,9 @@ function createReducer<M, L>(structure: Structure<M, L>) {
             const oldValue = getIn(previousValues, name)
             const oldInitialValue = getIn(previousInitialValues, name)
             if (!deepEqual(oldValue, oldInitialValue)) {
-              newValues = setIn(newValues, name, oldValue)
+              if (getIn(newValues, name) !== oldValue) {
+                newValues = setIn(newValues, name, oldValue)
+              }
             }
           })
         }

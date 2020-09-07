@@ -3,10 +3,7 @@ const { initialize } = actions
 
 const describeInitialize = (reducer, expect, { fromJS }) => () => {
   it('should set initialize values on initialize on empty state', () => {
-    const state = reducer(
-      undefined,
-      initialize('foo', { myField: 'initialValue' })
-    )
+    const state = reducer(undefined, initialize('foo', { myField: 'initialValue' }))
     expect(state).toEqualMap({
       foo: {
         values: {
@@ -20,10 +17,7 @@ const describeInitialize = (reducer, expect, { fromJS }) => () => {
   })
 
   it('should allow initializing null values', () => {
-    const state = reducer(
-      undefined,
-      initialize('foo', { bar: 'baz', dog: null })
-    )
+    const state = reducer(undefined, initialize('foo', { bar: 'baz', dog: null }))
     expect(state).toEqualMap({
       foo: {
         values: {
@@ -39,10 +33,7 @@ const describeInitialize = (reducer, expect, { fromJS }) => () => {
   })
 
   it('should initialize nested values on initialize on empty state', () => {
-    const state = reducer(
-      undefined,
-      initialize('foo', { myField: { subField: 'initialValue' } })
-    )
+    const state = reducer(undefined, initialize('foo', { myField: { subField: 'initialValue' } }))
     expect(state).toEqualMap({
       foo: {
         values: {
@@ -60,10 +51,7 @@ const describeInitialize = (reducer, expect, { fromJS }) => () => {
   })
 
   it('should initialize array values on initialize on empty state', () => {
-    const state = reducer(
-      undefined,
-      initialize('foo', { myField: ['initialValue'] })
-    )
+    const state = reducer(undefined, initialize('foo', { myField: ['initialValue'] }))
     expect(state).toEqualMap({
       foo: {
         values: {
@@ -441,9 +429,10 @@ const describeInitialize = (reducer, expect, { fromJS }) => () => {
       fromJS({ foo: { registeredFields, values, initial } }),
       initialize('foo', initial, true)
     )
+    console.log(state)
 
     expect(state).toEqualMap({
-      foo: { registeredFields, values, initial }
+      foo: { registeredFields, values: initial, initial }
     })
   })
 
@@ -615,10 +604,7 @@ const describeInitialize = (reducer, expect, { fromJS }) => () => {
     }
 
     const state = reducer(undefined, initialize('foo', initial))
-    const newState = reducer(
-      state,
-      initialize('foo', newInitial, { keepValues: true })
-    )
+    const newState = reducer(state, initialize('foo', newInitial, { keepValues: true }))
 
     expect(newState).toEqualMap({
       foo: {
